@@ -121,19 +121,19 @@ class DefaultController extends Controller
     {
             //získam ID usera
         if((($this->session->get('access_token/dropbox')) == null)){
-                $token = $this->loadToken("1", 'dropbox');
-                if($token)
-                {
-                    $this->session->set('access_token/dropbox', $token);
-                        //$_SESSION['access_token']['dropbox'] = $token;
-                }else
-                {
-                    $this->session->set('auth/dropbox', new DropboxAuthorizeController(DBX_OAUTH2_CREDENTIALS, CLIENT_IDENTIFIER, DBX_REDIRECT_URI));
-                        //$_SESSION['auth']['dropbox'] = new DropboxAuthorizeController(DBX_OAUTH2_CREDENTIALS, CLIENT_IDENTIFIER, DBX_REDIRECT_URI);
-                    return $this->session->get('auth/dropbox')->getAuthUrl();
-                        //return $_SESSION['auth']['dropbox']->getAuthUrl();
-                }
+            $token = $this->loadToken("1", 'dropbox');
+            if($token)
+            {
+                $this->session->set('access_token/dropbox', $token);
+                //$_SESSION['access_token']['dropbox'] = $token;
+            }else
+            {
+                $this->session->set('auth/dropbox', new DropboxAuthorizeController(DBX_OAUTH2_CREDENTIALS, CLIENT_IDENTIFIER, DBX_REDIRECT_URI));
+                //$_SESSION['auth']['dropbox'] = new DropboxAuthorizeController(DBX_OAUTH2_CREDENTIALS, CLIENT_IDENTIFIER, DBX_REDIRECT_URI);
+                return $this->session->get('auth/dropbox')->getAuthUrl();
+                //return $_SESSION['auth']['dropbox']->getAuthUrl();
             }
+        }
         return;
 
     }
@@ -173,7 +173,7 @@ class DefaultController extends Controller
                 $this->googleauth = new GoogleAuthorize(GOOGLE_OAUTH2_CREDENTIALS, GOOGLE_REDIRECT_URI, GOOGLE_API);
                 return $this->googleauth->getAuthUrl();
             }
-        }elseif($this->session->get('refresh_token/google') && (!$token))
+        }elseif($this->session->get('refresh_token/google') && ($token))
             $this->insertToken("google", "1", $this->session->get('refresh_token/google'));
         return;
     }
@@ -253,6 +253,7 @@ class DefaultController extends Controller
     public function uploadDropbox()
     {
         $this->session = $this->get('session');
+        var_dump($this->session->get('access_token/dropbox'));
         $upload = new DbxUpload($this->session->get('access_token/dropbox'), CLIENT_IDENTIFIER);
         $upload->getFiles();
         $upload->UploadFiles();

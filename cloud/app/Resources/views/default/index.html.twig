@@ -4,7 +4,7 @@
 {% else %}
     <p>Si prihlaseny v dropboxe!</p>
     <a href="javascript:window.location.href=window.location.href+'/logout/dropbox'">logout</a></br>
-    <form action="app_dev.php/upload/dropbox" enctype="multipart/form-data" method="post">
+    <form action="upload/dropbox" enctype="multipart/form-data" method="post">
 		<div>
 			<label for='upload'>Add Attachments:</label>
 			<input id='upload' name="upload[]" type="file" multiple="multiple" />
@@ -18,7 +18,7 @@
 {% else %}
     <p>Si prihlaseny v google</p>
     <a href="javascript:window.location.href=window.location.href+'/logout/google'">logout</a></br>
-    <form action="app_dev.php/upload/google" enctype="multipart/form-data" method="post">
+    <form action="upload/google" enctype="multipart/form-data" method="post">
 		<div>
 			<label for='upload'>Add Attachments:</label>
 			<input id='upload' name="upload[]" type="file" multiple="multiple" />
