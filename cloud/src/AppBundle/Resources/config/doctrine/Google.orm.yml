@@ -1,0 +1,21 @@
+AppBundle\Entity\Google:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\GoogleRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        userid:
+            type: integer
+            unique: true
+        token:
+            type: string
+            length: 255
+        status:
+            type: boolean
+            
+    lifecycleCallbacks: {  }

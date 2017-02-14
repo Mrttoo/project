@@ -1,0 +1,29 @@
+{% if authurl is not empty %}
+    <a href={{authurl}}>connect dropbox</a></br>
+
+{% else %}
+    <p>Si prihlaseny v dropboxe!</p>
+    <a href="javascript:window.location.href=window.location.href+'/logout/dropbox'">logout</a></br>
+    <form action="app_dev.php/upload/dropbox" enctype="multipart/form-data" method="post">
+		<div>
+			<label for='upload'>Add Attachments:</label>
+			<input id='upload' name="upload[]" type="file" multiple="multiple" />
+		</div>
+		<p><input type="submit" name="submit" value="Submit"></p>
+	</form>
+{% endif %}
+
+{% if gauthurl is not empty %}
+    <a href={{gauthurl}}>connect google</a></br>
+{% else %}
+    <p>Si prihlaseny v google</p>
+    <a href="javascript:window.location.href=window.location.href+'/logout/google'">logout</a></br>
+    <form action="app_dev.php/upload/google" enctype="multipart/form-data" method="post">
+		<div>
+			<label for='upload'>Add Attachments:</label>
+			<input id='upload' name="upload[]" type="file" multiple="multiple" />
+		</div>
+		<p><input type="submit" name="submit" value="Submit"></p>
+	</form>
+{% endif %}
+
